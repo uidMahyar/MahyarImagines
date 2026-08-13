@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کوره‌گر — ساخت ریسورس‌پک ماینکرافت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- پس‌زمینه صنعتی: جرقه‌ها -->
+<canvas id="sparkCanvas"></canvas>
+<div class="forge-glow"></div>
+
+<!-- ========== نوار بالا ========== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none">
+        <path d="M24 4L8 14V34L24 44L40 34V14L24 4Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M24 4V44M8 14L40 34M40 14L8 34" stroke="currentColor" stroke-width="1" stroke-opacity="0.4"/>
+        <circle cx="24" cy="24" r="5" fill="currentColor"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-title">کوره‌گر</span>
+        <span class="brand-sub">RESOURCE PACK FORGE</span>
+      </div>
+    </div>
+    <div class="topbar-meta">
+      <span class="engine-tag" id="engineTag">هدف: ۱.۲۰ به بعد</span>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ========== صفحه اصلی: گرید دسته‌ها ========== -->
+  <section id="screen-home" class="screen screen-home active">
+    <div class="home-hero">
+      <p class="home-eyebrow">کارگاه ساخت پک — بدراک</p>
+      <h1 class="home-title">
+        هرچی تو دستته، <span class="text-ember">بساز.</span>
+      </h1>
+      <p class="home-desc">
+        عکس خودتو برای هر آیتم بده، کوره‌گر برات یه ریسورس‌پک واقعی و آماده‌ی نصب بیرون می‌ده.
+        بدون نیاز به برنامه، بدون کد.
+      </p>
+    </div>
+
+    <div class="category-grid" id="categoryGrid">
+      <!-- با JS پر می‌شه -->
+    </div>
+  </section>
+
+  <!-- ========== صفحه دسته: شمشیرها ========== -->
+  <section id="screen-swords" class="screen screen-builder">
+    <div class="builder-header">
+      <button class="btn-back" data-nav="home">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>بازگشت</span>
+      </button>
+      <div class="builder-title-wrap">
+        <span class="builder-kicker">دسته ۰۱</span>
+        <h2 class="builder-title">شمشیرها</h2>
+      </div>
+      <div class="builder-progress" id="swordProgress">
+        <span class="progress-count"><span id="progressFilled">0</span>/<span id="progressTotal">6</span></span>
+        <span class="progress-label">تکسچر آماده</span>
+      </div>
+    </div>
+
+    <p class="builder-hint">
+      برای هر جنس، یه عکس بده — مربعی بهتره، خودکار به ۱۶×۱۶ پیکسل (استاندارد وانیلا) تبدیل می‌شه تا رو همه دستگاه‌ها درست دیده بشه.
+      هر جنسی رو نخواستی عوض کنی، خالی بذار؛ همون طرح پیش‌فرض ماینکرافت می‌مونه.
+    </p>
+
+    <div class="slot-grid" id="slotGrid">
+      <!-- با JS پر می‌شه -->
+    </div>
+
+    <div class="builder-footer">
+      <div class="footer-info">
+        <input type="text" id="packName" class="pack-name-input" placeholder="اسم پکت چیه؟" maxlength="40" value="پک شمشیر من">
+      </div>
+      <button class="btn-forge" id="btnForge" disabled>
+        <svg viewBox="0 0 24 24" fill="none" class="forge-icon"><path d="M12 2L4 7V17L12 22L20 17V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>ساخت ریسورس‌پک</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ========== صفحه دسته: به‌زودی ========== -->
+  <section id="screen-soon" class="screen screen-soon">
+    <div class="soon-inner">
+      <button class="btn-back" data-nav="home">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>بازگشت</span>
+      </button>
+      <div class="soon-content">
+        <svg class="soon-icon" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="2" stroke-dasharray="4 6"/>
+          <path d="M32 20V32L40 38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h2 id="soonTitle" class="soon-title">به‌زودی تو کوره</h2>
+        <p class="soon-desc">این بخش هنوز داره ساخته می‌شه. اول شمشیرها رو کامل می‌کنیم، بعد نوبت این می‌رسه.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== صفحه نتیجه: پک آماده شد ========== -->
+  <section id="screen-result" class="screen screen-result">
+    <div class="result-inner">
+      <div class="result-glow"></div>
+      <svg class="result-icon" viewBox="0 0 64 64" fill="none">
+        <path d="M32 6L12 17V47L32 58L52 47V17L32 6Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M22 32L29 39L44 24" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h2 class="result-title">پکت از کوره دراومد</h2>
+      <p class="result-desc" id="resultFileName">sword-pack.mcpack</p>
+      <div class="result-actions">
+        <a id="downloadLink" class="btn-download" download>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3V15M12 15L7 10M12 15L17 10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19H20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span>دانلود فایل mcpack</span>
+        </a>
+        <button class="btn-secondary" data-nav="home">ساخت یه پک دیگه</button>
+      </div>
+      <p class="result-note">فایل رو باز کن تا مستقیم به ماینکرافت اضافه بشه (یا از داخل اپ Files روی گوشیت بازش کن).</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- توست خطا -->
+<div id="toast" class="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="js/categories.js"></script>
+<script src="js/imageProcessor.js"></script>
+<script src="js/packBuilder.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
